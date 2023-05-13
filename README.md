@@ -5,7 +5,6 @@
  - [x] Create EC2
  - [x] Install Docker in EC2
  - [x] Install Jenkins in EC2
- - [x] Install Jenkins in EC2
  - [x] Link GitHub with Jenkind (put the Repo link in Jenkins)
  - [x] Clone the project
  - [x] Run the docker container in docker desktop installed in EC2 through Jenkins
@@ -18,7 +17,6 @@ sudo snap install docker
 
 To install docker-compose:
 sudo apt install docker-compose
-
 
 2. Clone the Project to EC2 from GitHub
 
