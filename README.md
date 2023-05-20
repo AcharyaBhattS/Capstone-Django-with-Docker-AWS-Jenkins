@@ -78,7 +78,7 @@ Example:
     sudo docker ps -a 
 
 ### 3.112 Actual Container Execution Image
-![The Container Execution Depection](Container_execution.png)
+![The Container Execution Depection](/Capstone-Django-with-Docker-AWS-Jenkins/gitReadMe_Images/Container_execution.png "Container Execution")
 
 ### 3.12 To shutdown/ stop the container:
     sudo docker-compose -f docker-compose.override.yml down
