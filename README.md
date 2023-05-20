@@ -10,9 +10,6 @@
  - [x] Install Install java
  - [x] Install Jenkins in EC2 and Run
  - [x] Link GitHub with Jenkind (put the Repo link in Jenkins)
- - [x] Clone the project
- - [x] Run the docker container in EC2 
- - [x] installed in EC2 through Jenkins
 <br><br>
 
 
