@@ -10,6 +10,7 @@
  - [x] Install Install java
  - [x] Install Jenkins in EC2 and Run
  - [x] Link GitHub with Jenkind (put the Repo link in Jenkins)
+ - [x] CI/CD pipeline through Jenkins
 <br><br>
 
 
