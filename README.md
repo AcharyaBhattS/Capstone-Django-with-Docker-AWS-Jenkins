@@ -2,12 +2,17 @@
 ### Capstone Project on Django+Docker+AWS+Jenkins
 
 ### Project Steps overview:
- - [x] Create EC2
- - [x] Install Docker in EC2
- - [x] Install Jenkins in EC2
+ - [x] Test Django Project in Local Machine
+ - [x] Upload Project from Local Repo to GitHub Repo
+ - [x] Create EC2 Ubuntu Instance
+ - [x] Install Docker and Docker Compose in EC2
+ - [x] Create Docker Images
+ - [x] Install Install java
+ - [x] Install Jenkins in EC2 and Run
  - [x] Link GitHub with Jenkind (put the Repo link in Jenkins)
  - [x] Clone the project
- - [x] Run the docker container in docker desktop installed in EC2 through Jenkins
+ - [x] Run the docker container in EC2 
+ - [x] installed in EC2 through Jenkins
 <br><br>
 
 
