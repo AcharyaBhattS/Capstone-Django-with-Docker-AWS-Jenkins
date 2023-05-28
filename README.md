@@ -80,15 +80,18 @@ Example:
 ### 3.11 To see the details of Container images:
     sudo docker ps -a 
 
-### 3.112 Actual Container Execution Image
-![The Container Execution](/gitReadMe_Images/Container_execution.png "Container Execution")
+### 3.12 Actual Container Execution Image
+![The Container Execution](gitReadMe_Images/Container_execution.png "Container Execution")
+<br>
 
-### 3.12 To shutdown/ stop the container:
+### 3.13 To shutdown/ stop the container:
     sudo docker-compose -f docker-compose.override.yml down
+<br>
 
-# 4 Install Jenkins on Ubuntu on EC2
+## 4 Install JAVA & Jenkins on Ubuntu on EC2
 [Jenkins Installation Reference](https://www.devstringx.com/setting-up-jenkins-on-amazon-ec2-ubuntu-instance)
-## 4.1 Create a Secutity Group
+
+### 4.1 Create a Secutity Group
 EC2 instance >> Network & Security >> Security Group >> Create a Security Group >> Add Inbound Rules
 
 --> Port 8080 is where Jenkins runs.
@@ -97,46 +100,86 @@ EC2 instance >> Network & Security >> Security Group >> Create a Security Group 
 	//	HTTP		TCP	80		Anywhere	0.0.0.0/0
 	//	CUSTOM TCP	TCP	8080	Anywhere	0.0.0.0/0
 
-## 4.2 SSH to connect to your instance
+### 4.2 SSH to connect to your instance
     ssh -i kp-project3.pem ubuntu@3.86.28.185
 
-## 4.3 Enable the ‘Universe’ repository using the below command
+### 4.3 Enable the ‘Universe’ repository using the below command
     sudo add-apt-repository universe
-## 4.4 Install java
-    sudo apt install openjdk-8-jdk
-## 4.5 Addition of custome code
-// Setup Java_Home using the below commands
-// Open bashrc file with the command
 
-    sudo nano .bashrc
-// Add the below lines at the end you’re in bashrc file
+### 4.4 Install java and Update the system
+```sh
+sudo apt update
+sudo apt install openjdk-11-jre
+java -version
+```
+If everyting looks ok the output should be like
 
-	export JAVA_HOME=/usr
-    export PATH=$JAVA_HOME/bin:$PATH
-// save the file
+```sh
+ openjdk version "11.0.12" 2021-07-20 OpenJDK Runtime Environment (build 11.0.12+7-post-Debian-2) OpenJDK 64-Bit Server VM (build 11.0.12+7-post-Debian-2, mixed mode, sharing)
+```
 
-			CNTL X 	Save 	Yes	    
-## 4.4 Install Jenkins - Add the key using the below command in order to use Debian package repository of Jenkins 
-    wget -q -O – https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add –
-## 4.5 Install Jenkins - Add the following entry in your /etc/apt/sources.list
-    sudo sh -c ‘echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list’ 
-## 4.6 Execute below commands
-    sudo apt-get update
-	sudo apt-get install Jenkins
+### 4.5 Install Jenkins 
+```sh
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \   /usr/share/keyrings/jenkins-keyring.asc > /dev/null 
+```
+and 
+```sh
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \   https://pkg.jenkins.io/debian binary/ | sudo tee \   /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
+Install latest update to the system again 
+```sh
+sudo apt-get update 
+```
+Time to install Jenkins 
+```sh
+sudo apt-get install jenkins
+```
+<br>
 
-## 4.7 Open a web browser and enter the URL, here you will be asked to enter the admin password.
+## 5. Start Jenkins Procedures 
+Enable Jenkins :
+```sh
+sudo systemctl enable jenkins
+```
+Start Jenkins :
+```sh 
+sudo systemctl start jenkins
+```
+Know the status of the Jenkins whether it is running or not : 
+```sh
+sudo systemctl status jenkins
+```
+<br>
+<p>The Jenkins usually runs at <strong> Port : 8080</strong> if left unconfigured </br>
+
+<p>Put the public IP assinged by the EC2 instance Dashboard followed by the Port Number to access the Jenkins Dashboard</p>
+
+Now we will dockerize the application in docker hub so that it can be accessed anywhere by anyone.
+<br><br>
+
+### Screenshots
+[![1.webp](https://i.postimg.cc/4Nw3fJMP/1.webp)](https://postimg.cc/WhFVSPsq)
+
+[![2.webp](https://i.postimg.cc/XYJYXR6b/2.webp)](https://postimg.cc/xcw24Fdx)
+
+<br><br>
+
+## 6. Open a web browser and enter the URL, here you will be asked to enter the admin password.
 
     //	http://<your_ec2_ip_address>:8080
         http://3.86.28.185:8080
-## 4.8 Copy the Jenkins admin user password using the below command, and paste it into the “Administrator Password” section on your web browser
+<br>
+
+## 7. Copy the Jenkins admin user password using the below command, and paste it into the “Administrator Password” section on your web browser
 
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword 
+<br>
 
-### 4.9 Continue with the setup and install suggestive plugins by clicking on the button ‘Install suggested plugins
+## 8. Continue with the setup and install suggestive plugins by clicking on the button ‘Install suggested plugins
+<br>
 
+## 9. Create your first admin user and click on the button Save and Continue
+<br>
 
-### 4.10 Create your first admin user and click on the button Save and Continue
-
-
-### 4.11 Navigate to <your_ec2_ip_address>:8080 in your web browser and log in with admin credentials setup in step above.
+## 10. Navigate to <your_ec2_ip_address>:8080 in your web browser and log in with admin credentials setup in step above.
 
